@@ -1,0 +1,26 @@
+{
+  "name": "git-util",
+  "version": "1.0.0",
+  "description": "Git Utility App",
+  "main": "./bin/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chandrakiranks/git-util.git"
+  },
+  "author": "Chandrakiran KS",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chandrakiranks/git-util/issues"
+  },
+  "homepage": "https://github.com/chandrakiranks/git-util#readme",
+  "bin": {
+    "git-util": "./bin/index.js"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.0",
+    "yargs": "^13.3.0"
+  }
+}
