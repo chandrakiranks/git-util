@@ -10,7 +10,7 @@ const fetch = require('node-fetch');
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 
 const options = yargs
-    .usage("Usage: -prerelease <true>")
+    .usage("Usage: --prerelease <true>")
     .option("prerelease", { alias: "prerelease", describe: "is it pre release?", type: "boolean", demandOption: true })
     .argv;
 
