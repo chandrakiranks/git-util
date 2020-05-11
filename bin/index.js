@@ -118,7 +118,7 @@ function createPreReleaseTag(releaseBranch, newTagVersion) {
                             var payload = {
                                 "tag_name": newTagVersion,
                                 "target_commitish": RELEASE_BRANCH,
-                                "name": newTagVersion,
+                                "name": "Release Tag from " + RELEASE_BRANCH,
                                 "body": changeLog,
                                 "draft": false,
                                 "prerelease": true
