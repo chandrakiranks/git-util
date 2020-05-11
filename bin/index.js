@@ -193,7 +193,7 @@ if ( options.prerelease == true ) {
     if (GIT_REPO && RELEASE_BRANCH) {
         prerelease();
     } else {
-        console.log('Please set the GIT_REPO and RELEASE_BRANCH');
+        console.log('>>> Please set the GIT_REPO and RELEASE_BRANCH <<<');
         process.exit(1);
     }
 }
