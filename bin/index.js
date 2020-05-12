@@ -106,8 +106,9 @@ function createPreReleaseTag(releaseBranch, newTagVersion) {
                             data.commits.map((commit) => {
                                 author = commit.commit && commit.commit.author && commit.commit.author.name ? commit.commit.author.name : (commit.commit.author && commit.commit.author.login ? commit.commit.author.login : '-');
                                 message = commit.commit.message.split('\n');
-                                changeLog.push(commit.sha.substring(0, 10) + ' | ' + author + ' | ' + message[0]);
+                                changeLog.push(commit.commit.author.date + ' | ' + commit.sha.substring(0, 10) + ' | ' + author + ' | ' + message[0]);
                             });
+                            changeLog = changeLog.reverse();
 
                             // constructing string
                             changeLog = changeLog.join('<br />');
