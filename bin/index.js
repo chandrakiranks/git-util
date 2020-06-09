@@ -15,7 +15,8 @@ process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 
 const options = yargs
     .usage("Usage: --prerelease <true>")
-    .option("prerelease", { alias: "prerelease", describe: "is it pre release?", type: "boolean", demandOption: true })
+    .option("prerelease", { alias: "prerelease", describe: "is it pre release?", type: "boolean", demandOption: false })
+    .option("getreleases", { alias: "getreleases", describe: "is it releases?", type: "boolean", demandOption: false })
     .argv;
 
 function resolved(result) {
@@ -24,6 +25,12 @@ function resolved(result) {
 
 function rejected(result) {
     console.error(result);
+}
+
+function getLatestPreRelease() {
+    getReleases().then((data) =>{
+        console.log(data[0]['tag_name']);
+    })
 }
 
 function getReleases() {
@@ -206,3 +213,13 @@ if ( options.prerelease == true ) {
         process.exit(1);
     }
 }
+
+if ( options.getreleases == true ) {
+    if (GIT_REPO) {
+        getLatestPreRelease();
+    } else {
+        console.log('>>> Please set the GIT_REPO <<<');
+        process.exit(1);
+    }
+}
+
