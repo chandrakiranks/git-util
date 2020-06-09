@@ -116,12 +116,14 @@ function createPreReleaseTag(releaseBranch, newTagVersion) {
                             changeLog = changeLog.join('<br />');
                             changeLog = changeLog.replace('"', '');
                             changeLog = changeLog.replace('\'', '');
+                            
+                            var tagTitle = "Release Tag from " + RELEASE_BRANCH + "(" + newTagVersion + ")";
 
                             // creating payload
                             var payload = {
                                 "tag_name": newTagVersion,
                                 "target_commitish": RELEASE_BRANCH,
-                                "name": "Release Tag from " + RELEASE_BRANCH,
+                                "name": tagTitle,
                                 "body": changeLog,
                                 "draft": false,
                                 "prerelease": true
