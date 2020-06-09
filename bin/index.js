@@ -4,10 +4,6 @@
 var GIT_REPO = process.env.GIT_REPO;
 var RELEASE_BRANCH = process.env.RELEASE_BRANCH;
 
-console.log(GIT_REPO);
-console.log(RELEASE_BRANCH);
-
-
 // Accepting arguments from command line
 const yargs = require("yargs");
 const fetch = require('node-fetch');
