@@ -71,7 +71,7 @@ function calculateNewTagVersion(curVersion) {
     return newVersion;
 }
 
-function getLatestRelease() {
+function getLatestPublishedRelease() {
     var latestReleaseURL = GIT_REPO + "/releases/latest";
     return fetch(latestReleaseURL)
         .then(res => res.json())
@@ -90,7 +90,7 @@ function createPreReleaseTag(releaseBranch, newTagVersion) {
 
     if (releaseBranch) {
 
-        getLatestRelease()
+        getLatestPublishedRelease()
             .then((data) => {
                 var lastPublishedTag = data;
 
