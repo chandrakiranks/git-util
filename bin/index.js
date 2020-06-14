@@ -25,7 +25,6 @@ function rejected(result) {
 
 function getLatestRelease() {
     getReleases().then((data) =>{
-        console.log(data[0]);
         console.log(data[0]['tag_name']);
     })
 }
