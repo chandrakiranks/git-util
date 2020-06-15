@@ -10,9 +10,10 @@ const fetch = require('node-fetch');
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 
 const options = yargs
-    .usage("Usage: --prerelease <true>")
+    .usage("Usage: --prerelease --getlatestcode")
     .option("prerelease", { alias: "prerelease", describe: "is it pre release?", type: "boolean", demandOption: false })
     .option("getlatestrelease", { alias: "getlatestrelease", describe: "is it release?", type: "boolean", demandOption: false })
+    .option("tag", { alias: "tag", describe: "version number of new release", type: "string", demandOption: false })
     .argv;
 
 function resolved(result) {
@@ -63,12 +64,16 @@ function getComits(branch) {
 }
 
 function calculateNewTagVersion(curVersion) {
-    console.log('Calculating next release tag version');
-    var curVersion = curVersion.split('.');
-    curVersion[2]++;
-    var newVersion = curVersion.join('.');
-    console.log('New Pre Release Tag version is ' + newVersion);
-    return newVersion;
+    if(options.tag && options.tag !== "") {
+        return options.tag;
+    } else {
+        console.log('Calculating next release tag version');
+        var curVersion = curVersion.split('.');
+        curVersion[2]++;
+        var newVersion = curVersion.join('.');
+        console.log('New Pre Release Tag version is ' + newVersion);
+        return newVersion;
+    }
 }
 
 function getLatestPublishedRelease() {
@@ -119,7 +124,7 @@ function createPreReleaseTag(releaseBranch, newTagVersion) {
                             changeLog = changeLog.join('<br />');
                             changeLog = changeLog.replace('"', '');
                             changeLog = changeLog.replace('\'', '');
-                            
+
                             var tagTitle = "Release Tag from " + RELEASE_BRANCH + "(" + newTagVersion + ")";
 
                             // creating payload
