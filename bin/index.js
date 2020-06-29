@@ -101,6 +101,7 @@ function createPreReleaseTag(releaseBranch, newTagVersion) {
 
                 console.log('Getting change log between ' + releaseBranch + ' and  ' + lastPublishedTag);
                 lastPublishedTag = encodeURI(lastPublishedTag);
+                console.log("Encoded URL - ", lastPublishedTag);
                 var changeLogURL = GIT_REPO + "/compare/" + lastPublishedTag + '...' + releaseBranch;
                 // var changeLogURL = GIT_REPO + "/compare/" + releaseBranch + '...' + lastPublishedTag;
                 console.log(changeLogURL);
