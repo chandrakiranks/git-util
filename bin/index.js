@@ -115,7 +115,8 @@ function createPreReleaseTag(releaseBranch, newTagVersion) {
                                 author = commit.commit && commit.commit.author && commit.commit.author.name ? commit.commit.author.name : (commit.commit.author && commit.commit.author.login ? commit.commit.author.login : '-');
                                 message = commit.commit.message.split('\n');
                                 var commitDate = commit.commit.author.date;
-                                commitDate = commitDate.replace('T', ' @ ').replace('Z', '');
+                                commitDate = new Date(commitDate);
+                                commitDate = commitDate.toString().replace('GMT+0530 (India Standard Time)', '');
                                 changeLog.push(commit.sha.substring(0, 10) + ' | ' + commitDate + ' | ' + author + ' | ' + message[0]);
                             });
                             changeLog = changeLog.reverse();
