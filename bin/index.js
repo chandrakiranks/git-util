@@ -100,8 +100,6 @@ function createPreReleaseTag(releaseBranch, newTagVersion) {
                 var lastPublishedTag = data;
 
                 console.log('Getting change log between ' + releaseBranch + ' and  ' + lastPublishedTag);
-                lastPublishedTag = escape(lastPublishedTag);
-                console.log("escape URL - ", lastPublishedTag);
                 var changeLogURL = GIT_REPO + "/compare/" + lastPublishedTag + '...' + releaseBranch;
                 // var changeLogURL = GIT_REPO + "/compare/" + releaseBranch + '...' + lastPublishedTag;
                 console.log(changeLogURL);
@@ -149,7 +147,7 @@ function createPreReleaseTag(releaseBranch, newTagVersion) {
                                 });
 
                         } else {
-                            Promise.reject(new Error('API - Check your Branch Name and Tag Name')).then(resolved, rejected);
+                            Promise.reject(new Error('API - May be there are no new commits, Please check your Branch Name and Tag Name and commit history.')).then(resolved, rejected);
                         }
                     })
                     .catch(err => { console.error(err) });
