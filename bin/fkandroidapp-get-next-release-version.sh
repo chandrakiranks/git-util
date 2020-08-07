@@ -23,13 +23,7 @@ major)
   newVersoinName=`echo $versoinName | sed "s/[0-9]\{4\}$/${replace}/"`
   newVersoinName=$((newVersoinName + 10000))
 
-  if [ ${oldMinor} -lt 9 ]
-  then
-    minor=$((oldMinor + 1))
-    printf "${oldMajor}.${minor}.${newVersoinName}"
-  else
-    major=$((oldMajor + 1))
-    printf "${major}.0.${newVersoinName}"
-  fi
+  minor=$((oldMinor + 1))
+  printf "${oldMajor}.${minor}.${newVersoinName}"
   ;;
 esac
