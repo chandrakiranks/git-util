@@ -14,6 +14,7 @@ const options = yargs
     .option("prerelease", { alias: "prerelease", describe: "is it pre release?", type: "boolean", demandOption: false })
     .option("getlatestrelease", { alias: "getlatestrelease", describe: "is it release?", type: "boolean", demandOption: false })
     .option("tag", { alias: "tag", describe: "version number of new release", type: "string", demandOption: false })
+    .option("tagFor", { alias: "tagFor", describe: "creating the tag for which platform?", type: "string", demandOption: false })
     .argv;
 
 function resolved(result) {
@@ -126,7 +127,8 @@ function createPreReleaseTag(releaseBranch, newTagVersion) {
                             changeLog = changeLog.replace('"', '');
                             changeLog = changeLog.replace('\'', '');
 
-                            var tagTitle = "Release Tag from " + RELEASE_BRANCH + "(" + newTagVersion + ")";
+                            var tagFor = options.tagFor ? " for " + options.tagFor : "";
+                            var tagTitle = "Release Tag from " + RELEASE_BRANCH + tagFor + " - " + newTagVersion;
 
                             // creating payload
                             var payload = {
