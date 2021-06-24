@@ -15,7 +15,6 @@ const options = yargs
     .option("getlatestrelease", { alias: "getlatestrelease", describe: "is it release?", type: "boolean", demandOption: false })
     .option("tag", { alias: "tag", describe: "version number of new release", type: "string", demandOption: false })
     .option("tagFor", { alias: "tagFor", describe: "creating the tag for which platform?", type: "string", demandOption: false })
-    .option("bypassHashCheck", { alias: "bypassHashCheck", describe: "bypass the commit check to create the release? Create the release even if the commits are same.", type: "string", demandOption: false })
     .argv;
 
 function resolved(result) {
@@ -196,7 +195,7 @@ function prerelease() {
 
                         // if commits are same, no need to create new pre-release
                         console.log(lastCommitInReleaseBranch + " == " + lastCommitInReleaseTag);
-                        if ( bypassHashCheck == false && lastCommitInReleaseBranch == lastCommitInReleaseTag ) {
+                        if ( lastCommitInReleaseBranch == lastCommitInReleaseTag ) {
                             console.log('There are no new commits Release branch when compared to latest pre release tag, so no need to create new pre release tag');
                             console.log(latestReleaseTag);
                         } else {
