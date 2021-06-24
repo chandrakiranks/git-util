@@ -183,20 +183,20 @@ function prerelease() {
                 createPreReleaseTag(RELEASE_BRANCH, newPreReleaseTag);
 
             } else if (releases[0].prerelease == true) {
-                //console.log("There is a Pre Release Tag - " + latestReleaseTag);
-                //console.log('Checking for commits in pre-release (' + latestReleaseTag + ') and release branch (' + RELEASE_BRANCH + ')');
+                console.log("There is a Pre Release Tag - " + latestReleaseTag);
+                console.log('Checking for commits in pre-release (' + latestReleaseTag + ') and release branch (' + RELEASE_BRANCH + ')');
 
                 getComits(RELEASE_BRANCH).then((releaseBranchCommits) => {
                     var lastCommitInReleaseBranch = releaseBranchCommits[0].sha;
-                    //console.log('Latest Commit in Release branch - ' + RELEASE_BRANCH + ' - ' + lastCommitInReleaseBranch)
+                    console.log('Latest Commit in Release branch - ' + RELEASE_BRANCH + ' - ' + lastCommitInReleaseBranch)
                     getComits(latestReleaseTag).then((preReleaseTagCommits) => {
                         var lastCommitInReleaseTag = preReleaseTagCommits[0].sha;
-                        //console.log('Latest Commit in Release tag - ' + latestReleaseTag + ' - ' + lastCommitInReleaseTag);
+                        console.log('Latest Commit in Release tag - ' + latestReleaseTag + ' - ' + lastCommitInReleaseTag);
 
                         // if commits are same, no need to create new pre-release
-                        //console.log(lastCommitInReleaseBranch + " == " + lastCommitInReleaseTag);
+                        console.log(lastCommitInReleaseBranch + " == " + lastCommitInReleaseTag);
                         if ( lastCommitInReleaseBranch == lastCommitInReleaseTag ) {
-                            //console.log('There are no new commits Release branch when compared to latest pre release tag, so no need to create new pre release tag');
+                            console.log('There are no new commits Release branch when compared to latest pre release tag, so no need to create new pre release tag');
                             console.log(latestReleaseTag);
                         } else {
                             // create new release tag
