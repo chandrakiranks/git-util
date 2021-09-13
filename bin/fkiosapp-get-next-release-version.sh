@@ -8,6 +8,10 @@ patch=$(echo $preReleaseNumber | sed 's/^\([0-9]*\)\.\([0-9]*\)\.\([0-9]*\)(\([0
 buildNo=$(echo $preReleaseNumber | sed 's/^\([0-9]*\)\.\([0-9]*\)\.\([0-9]*\)(\([0-9]*\))$/\4/g')
 
 case $2 in
+nightly)
+  if [ $buildNo -le 20 ]; then buildNo=21; else buildNo=$((buildNo + 1)); fi
+  printf "$major.$minor.$patch($buildNo)"
+  ;;
 patch)
   buildNo=$((buildNo + 1))
   printf "$major.$minor.$patch($buildNo)"
